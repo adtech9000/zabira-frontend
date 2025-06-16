@@ -1,6 +1,4 @@
 
-// all frames
-
 let parentContainer =  document.querySelector('.parent-container');
 
 let frameOne = document.querySelector('.frame-one');
@@ -76,10 +74,7 @@ let learnMore = document.querySelector('.learn-more');
 let contactSupport = document.querySelector('.contact-support');
 let endCardFrame = document.querySelector('.end-card');
 
-// news letter frame
 let newsletterFrame = document.querySelector('.newsletter-frame');
-
-
 
 let defaultFrame = 0;
 let currentFrame = defaultFrame;
@@ -294,3 +289,105 @@ optionSixteen.addEventListener('click', () => {
 optionSeventeen.addEventListener('click', () => {
     activateEndFrame();
 })
+
+const CONFIG = {
+    BACKEND_URL: 'https://zabira-backend.onrender.com/api/ad-tracking/track',
+    OPTION_MAPPING: {
+        // Frame One
+        'frame-one-option-one': 'STEP_1_LETS_GO',
+        'frame-one-option-two': 'STEP_1_NOT_SURE_YET',
+
+        // Frame Two
+        'frame-two-option-one': 'STEP_2_EARN_FAST',
+        'frame-two-option-two': 'STEP_2_INVEST_FUTURE',
+        'frame-two-option-three': 'STEP_2_EXPLORING',
+
+        // Frame Three A
+        'frame-three-a-option-one': 'STEP_3A_SHOW_ME_HOW_IT_WORKS',
+        'frame-three-a-option-two': 'STEP_3A_I_HAVE_QUESTIONS',
+        'frame-three-a-option-three': 'STEP_3A_I_WOULD_EXPLORE',
+
+        // Frame Three B
+        'frame-three-b-option-one': 'STEP_3A_UP_TO_50',
+        'frame-three-b-option-two': 'STEP_3A_UP_TO_500',
+        'frame-three-b-option-three': 'STEP_3A_UP_TO_5000',
+        'frame-three-b-option-four': 'STEP_3A_NO_CAPITAL',
+
+        // Frame Three C
+        'frame-three-c-option-one': 'STEP_3C_LEARN_ABOUT_ZABIRA',
+        'frame-three-c-option-two': 'STEP_3C_LEARN_ABOUT_DIGITAL_ASSETS',
+        'frame-three-c-option-three': 'STEP_3C_I_AM_NOT_INTERESTED',
+
+        // Frame Four
+        'frame-four-option-one': 'STEP_4_LEARN_MORE',
+        'frame-four-option-two': 'STEP_4_TALK_TO_SUPPORT',
+        'frame-four-option-three': 'STEP_4_YES_GET_THE_APP',
+
+        // Newsletter
+        'newsletter-option': 'EMAIL_SUBSCRIBE'
+
+        // STEP_3A_I_HAVE_QUESTIONS, STEP_3A_I_WOULD_EXPLORE, CONTACT_SUPPORT_CLICKED, LEARN_MORE_CLICKED, PLAY_STORE_CLICKED, APP_STORE_CLICKED;
+    }
+};
+
+async function sendToBackend(interactionType, email = null) {
+    try {
+        const params = new URLSearchParams();
+        params.append('interactionType', interactionType);
+        if (email) params.append('email', email);
+
+        const response = await fetch(`${CONFIG.BACKEND_URL}?${params.toString()}`, {
+            method: 'POST',
+            headers: { 'Accept': 'application/json' }
+        });
+
+        const data = await response.json();
+        console.log('Backend response:', data);
+        return data;
+    } catch (error) {
+        console.error('Error sending to backend:', error);
+        throw error;
+    }
+}
+
+async function handleOptionClick(optionId, email = null) {
+    const interactionType = CONFIG.OPTION_MAPPING[optionId];
+    if (!interactionType) {
+        console.error('No interaction type defined for:', optionId);
+        return;
+    }
+    try {
+        await sendToBackend(interactionType, email);
+    } catch (error) {
+        console.error('Failed to track interaction:', error);
+    }
+}
+
+function initEventListeners() {
+    document.querySelectorAll('.options').forEach(option => {
+        option.addEventListener('click', async (e) => {
+            e.preventDefault();
+            await handleOptionClick(option.id);
+        });
+    });
+
+    const newsletterForm = document.querySelector('form.newsletter-form');
+    const emailInput = document.querySelector('.newsletter-input');
+
+    if (newsletterForm && emailInput) {
+        newsletterForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = emailInput.value.trim();
+
+            if (email) {
+                const success = await handleOptionClick('newsletter-option', email);
+                if (success) {
+                    emailInput.value = '';
+                    alert('Thank you for subscribing!');
+                }
+            }
+        });
+    }
+}
+
+document.addEventListener('DOMContentLoaded', initEventListeners);
