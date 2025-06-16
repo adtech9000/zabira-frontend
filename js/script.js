@@ -217,9 +217,6 @@ function activateFrameFiveV2(){
 
 }
 
-
-
-
 optionOne.addEventListener('click', () => {
     activateFrameTwo();
 })
@@ -303,9 +300,9 @@ const CONFIG = {
         'frame-two-option-three': 'STEP_2_EXPLORING',
 
         // Frame Three A
-        'frame-three-a-option-one': 'STEP_3A_SHOW_ME_HOW_IT_WORKS',
-        'frame-three-a-option-two': 'STEP_3A_I_HAVE_QUESTIONS',
-        'frame-three-a-option-three': 'STEP_3A_I_WOULD_EXPLORE',
+        'frame-three-a-option-one': 'SHOW_ME_HOW_IT_WORKS',
+        'frame-three-a-option-two': 'I_HAVE_QUESTIONS',
+        'frame-three-a-option-three': 'EXPLORE',
 
         // Frame Three B
         'frame-three-b-option-one': 'STEP_3A_UP_TO_50',
@@ -324,9 +321,19 @@ const CONFIG = {
         'frame-four-option-three': 'STEP_4_YES_GET_THE_APP',
 
         // Newsletter
-        'newsletter-option': 'EMAIL_SUBSCRIBE'
+        'newsletter-option': 'EMAIL_SUBSCRIBE',
 
-        // STEP_3A_I_HAVE_QUESTIONS, STEP_3A_I_WOULD_EXPLORE, CONTACT_SUPPORT_CLICKED, LEARN_MORE_CLICKED, PLAY_STORE_CLICKED, APP_STORE_CLICKED;
+        //end Cards
+        'learn-more': 'LEARN_MORE_CLICKED',
+        'contact-support': 'CONTACT_SUPPORT_CLICKED',
+        'app-store': 'APP_STORE_CLICKED',
+        'play-store': 'PLAY_STORE_CLICKED'
+    },
+    REDIRECT_URLS: {
+        'learn-more': 'https://www.zabira.com',
+        'contact-support': 'https://www.zabira.com/company/contact',
+        'app-store': 'YOUR_APP_STORE_URL',
+        'play-store': 'YOUR_PLAY_STORE_URL'
     }
 };
 
@@ -363,6 +370,40 @@ async function handleOptionClick(optionId, email = null) {
     }
 }
 
+async function trackAndRedirect(interactionType) {
+    try {
+        await handleOptionClick(interactionType);
+
+        if (CONFIG.REDIRECT_URLS[interactionType]) {
+            window.location.href = CONFIG.REDIRECT_URLS[interactionType];
+        }
+    } catch (error) {
+        console.error('Error in trackAndRedirect:', error);
+    }
+}
+
+function initEndCardListeners() {
+    document.querySelector('.learn-more')?.addEventListener('click', async (e) => {
+        e.preventDefault();
+        await trackAndRedirect('learn-more');
+    });
+
+    document.querySelector('.contact-support')?.addEventListener('click', async (e) => {
+        e.preventDefault();
+        await trackAndRedirect('contact-support');
+    });
+
+    document.querySelector('.app-store-logo')?.addEventListener('click', async (e) => {
+        e.preventDefault();
+        await trackAndRedirect('app-store');
+    });
+
+    document.querySelector('.play-store-logo')?.addEventListener('click', async (e) => {
+        e.preventDefault();
+        await trackAndRedirect('play-store');
+    });
+}
+
 function initEventListeners() {
     document.querySelectorAll('.options').forEach(option => {
         option.addEventListener('click', async (e) => {
@@ -385,6 +426,7 @@ function initEventListeners() {
             }
         });
     }
+    initEndCardListeners();
 }
 
 document.addEventListener('DOMContentLoaded', initEventListeners);
