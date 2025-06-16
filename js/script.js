@@ -332,15 +332,22 @@ const CONFIG = {
     REDIRECT_URLS: {
         'learn-more': 'https://www.zabira.com',
         'contact-support': 'https://www.zabira.com/company/contact',
-        'app-store': 'YOUR_APP_STORE_URL',
-        'play-store': 'YOUR_PLAY_STORE_URL'
+        'app-store': 'APP_STORE_URL',
+        'play-store': 'PLAY_STORE_URL'
+    },
+    DIMENSION: {
+        'DIMENSION_320_480' : 'DIMENSION_320_480',
+        'DIMENSION_480_320' : 'DIMENSION_480_320',
+        'DIMENSION_300_600' : 'DIMENSION_300_600',
+        'DIMENSION_300_250' : 'DIMENSION_300_250'
     }
 };
 
-async function sendToBackend(interactionType, email = null) {
+async function sendToBackend(interactionType, email) {
     try {
         const params = new URLSearchParams();
         params.append('interactionType', interactionType);
+        params.append('dimension', `${CONFIG.DIMENSION.DIMENSION_320_480}`);
         if (email) params.append('email', email);
 
         const response = await fetch(`${CONFIG.BACKEND_URL}?${params.toString()}`, {
