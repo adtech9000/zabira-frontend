@@ -380,11 +380,8 @@ function initEventListeners() {
             const email = emailInput.value.trim();
 
             if (email) {
-                const success = await handleOptionClick('newsletter-option', email);
-                if (success) {
-                    emailInput.value = '';
-                    alert('Thank you for subscribing!');
-                }
+                emailInput.value = '';
+                await handleOptionClick('newsletter-option', email);
             }
         });
     }
