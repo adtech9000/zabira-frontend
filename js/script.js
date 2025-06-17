@@ -363,8 +363,8 @@ const CONFIG = {
     REDIRECT_URLS: {
         'learn-more': 'https://www.zabira.com',
         'contact-support': 'https://www.zabira.com/company/contact',
-        'app-store': 'APP_STORE_URL',
-        'play-store': 'PLAY_STORE_URL'
+        'app-store': 'https://zabir.onelink.me/KOGG/qxe4pni9',
+        'play-store': 'https://zabir.onelink.me/KOGG/qxe4pni9'
     },
     DIMENSION: {
         'DIMENSION_320_480' : 'DIMENSION_320_480',
