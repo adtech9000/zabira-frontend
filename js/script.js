@@ -67,6 +67,32 @@ let optionSixteen = document.querySelector('#frame-four-option-two');
 let optionSeventeen = document.querySelector('#frame-four-option-three');
 
 
+let options = [
+  optionOne,
+  optionTwo,
+  optionThree,
+  optionFour,
+  optionFive,
+  optionSix,
+  optionSeven,
+  optionEight,
+  optionNine,
+  optionTen,
+  optionEleven,
+  optionTwelve,
+  optionThirteen,
+  optionFourteen,
+  optionFifteen,
+  optionSixteen,
+  optionSeventeen
+]
+
+
+function animateAll(){
+    options.forEach(option => option.classList.add('scale-up-ver-bottom'));
+}
+
+
 // end card
 let appStoreLogo = document.querySelector('.app-store-logo');
 let playStoreLogo = document.querySelector('.play-store-logo');
@@ -82,6 +108,8 @@ let currentFrame = defaultFrame;
 
 function addBackground(frameIndex) {
   parentContainer.classList.add(allFrameStyles[frameIndex]);
+  optionOne.classList.add('scale-up-ver-bottom')
+  optionTwo.classList.add('scale-up-ver-bottom')
 }
 
 // add background to the current frame
@@ -130,6 +158,7 @@ function activateFrameTwo(){
     // activate next frame
     allFrames[currentFrame].style.display = "block";
     addBackground(currentFrame);
+    animateAll();
 }
 
 function activateFrameThreeA(){
@@ -143,6 +172,7 @@ function activateFrameThreeA(){
     // activate next frame
     allFrames[currentFrame].style.display = "block";
     addBackground(currentFrame);
+    animateAll();
 }
 
 
@@ -157,6 +187,7 @@ function activateFrameThreeB(){
      // activate next frame
     allFrames[currentFrame].style.display = "block";
     addBackground(currentFrame - 1);
+    animateAll();
 }
 
 function activateFrameThreeC(){
@@ -170,7 +201,7 @@ function activateFrameThreeC(){
      // activate next frame
     allFrames[currentFrame].style.display = "block";
     addBackground(currentFrame - 2);
-
+    animateAll();
 }
 
 
@@ -185,7 +216,7 @@ function activateFrameFour(){
     // activate next frame
     allFrames[currentFrame].style.display = "block";
     addBackground(currentFrame - 2)
-
+    animateAll();
 }
 
 function activateFrameFive(){
@@ -199,7 +230,7 @@ function activateFrameFive(){
      // activate next frame
     allFrames[currentFrame].style.display = "block";
     addBackground(currentFrame - 2)
-
+    animateAll();
 }
 
 
@@ -214,7 +245,7 @@ function activateFrameFiveV2(){
      // activate next frame
     allFrames[currentFrame].style.display = "block";
     addBackground(currentFrame - 2)
-
+    animateAll();
 }
 
 optionOne.addEventListener('click', () => {
@@ -226,7 +257,7 @@ optionTwo.addEventListener('click', () => {
 })
 
 optionThree.addEventListener('click', () => {
-    activateFrameThreeA()
+    activateFrameThreeA();
 })
 
 optionFour.addEventListener('click', () => {
