@@ -8,7 +8,7 @@ body {
     width: 100%;
     max-width: 100vw;
     max-height: 100vh;
-    background-image: url("../assets/website-wallpaper.jpg");
+    background-image: url("https://res.cloudinary.com/dmscuhskq/image/upload/f_webp,q_auto/v1750563618/website-wallpaper_vqolqh.jpg");
     background-position: center;
     overflow-x: hidden;
     overflow-y: hidden;
@@ -31,7 +31,7 @@ body::before {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
     z-index: -1;
-    background-image: url("../assets/website-wallpaper.jpg");
+    background-image: url("https://res.cloudinary.com/dmscuhskq/image/upload/f_webp,q_auto/v1750563618/website-wallpaper_vqolqh.jpg");
     background-position: center;
     background-size: cover;
     filter: blur(20px);
@@ -289,14 +289,14 @@ button[type="submit"] {
 }
 
 .frame-one-background {
-    background-image: url("/assets/zabira-app-icon.png");
+    background-image: url("https://res.cloudinary.com/dmscuhskq/image/upload/f_webp,w_320,h_480,c_fill,q_auto/v1750540219/zabira-app-icon_qlpczk.png");
     background-repeat: no-repeat;
     background-size: 100%;
     background-position: -150px 250px;
 }
 
 .frame-two-background {
-    background-image: url("/assets/zabira-app-icon.png");
+    background-image: url("https://res.cloudinary.com/dmscuhskq/image/upload/f_webp,w_320,h_480,c_fill,q_auto/v1750540219/zabira-app-icon_qlpczk.png");
     background-repeat: no-repeat;
     background-size: 100%;
     background-position: 150px 250px;
@@ -304,14 +304,14 @@ button[type="submit"] {
 
 
 .frame-three-background {
-    background-image: url("https://res.cloudinary.com/dmscuhskq/image/upload/f_webp,q_auto/v1750540217/app-home-screen_axuiyc.png");
+    background-image: url("https://res.cloudinary.com/dmscuhskq/image/upload/f_webp,w_320,h_480,c_fill,q_auto/v1750540217/app-home-screen_axuiyc.png");
     background-repeat: no-repeat;
     background-size: 80%;
     background-position: 40px 300px;
 }
 
 .frame-four-background {
-    background-image: url("https://res.cloudinary.com/dmscuhskq/image/upload/f_webp,q_auto/v1750540220/gift-card-icon_ri2pag.png");
+    background-image: url("https://res.cloudinary.com/dmscuhskq/image/upload/f_webp,w_320,h_480,c_fill,q_auto/v1750540220/gift-card-icon_ri2pag.png");
     background-repeat: no-repeat;
     background-size: 80%;
     background-position: 40px 300px;
