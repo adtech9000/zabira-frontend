@@ -362,7 +362,7 @@ const CONFIG = {
     },
     REDIRECT_URLS: {
         'learn-more': 'https://www.zabira.com',
-        'contact-support': 'https://www.zabira.com/company/contact',
+        'contact-support': 'https://beacons.ai/zabirahelpdesk',
         'app-store': 'https://zabir.onelink.me/KOGG/qxe4pni9',
         'play-store': 'https://zabir.onelink.me/KOGG/qxe4pni9'
     },

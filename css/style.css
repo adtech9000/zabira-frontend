@@ -304,14 +304,14 @@ button[type="submit"] {
 
 
 .frame-three-background {
-    background-image: url("/assets/app-home-screen.png");
+    background-image: url("https://res.cloudinary.com/dmscuhskq/image/upload/f_webp,q_auto/v1750540217/app-home-screen_axuiyc.png");
     background-repeat: no-repeat;
     background-size: 80%;
     background-position: 40px 300px;
 }
 
 .frame-four-background {
-    background-image: url("/assets/gift-card-icon.png");
+    background-image: url("https://res.cloudinary.com/dmscuhskq/image/upload/f_webp,q_auto/v1750540220/gift-card-icon_ri2pag.png");
     background-repeat: no-repeat;
     background-size: 80%;
     background-position: 40px 300px;
