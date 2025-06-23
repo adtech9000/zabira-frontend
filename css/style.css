@@ -321,18 +321,42 @@ button[type="submit"] {
 .zabira-logo-v2 {
     width: 150px;
     margin-top: 10px;
-} 
+}
 
+.greeting-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.greeting-text {
+    color: #0044ee;
+    margin-bottom: 20px;
+    text-align: center;
+    opacity: 1;
+}
+
+.greeting-frame {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.greeting-frame.visible {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
 
 /* animation */
-
 
 .scale-up-ver-bottom {
 	-webkit-animation: scale-up-ver-bottom 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 	        animation: scale-up-ver-bottom 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 }
-
-
 
 @-webkit-keyframes scale-up-ver-bottom {
   0% {

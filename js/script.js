@@ -13,6 +13,8 @@ let frameThreeC = document.querySelector('.frame-three-c');
 
 let frameFour = document.querySelector('.frame-four');
 
+let greetingFrame = document.querySelector('.greeting-frame');
+
 
 let allFrames = [
     frameOne, 
@@ -20,7 +22,8 @@ let allFrames = [
     frameThreeA,
     frameThreeB,
     frameThreeC,
-    frameFour
+    frameFour,
+    greetingFrame
 ];
 
 let allFrameStyles = [
@@ -92,12 +95,6 @@ function animateAll(){
     options.forEach(option => option.classList.add('scale-up-ver-bottom'));
 }
 
-
-// end card
-let appStoreLogo = document.querySelector('.app-store-logo');
-let playStoreLogo = document.querySelector('.play-store-logo');
-let learnMore = document.querySelector('.learn-more');
-let contactSupport = document.querySelector('.contact-support');
 let endCardFrame = document.querySelector('.end-card');
 
 let newsletterFrame = document.querySelector('.newsletter-frame');
@@ -122,7 +119,6 @@ function addBackground(frameIndex) {
 
 
 function activateNewsLetterFrame() {
-    // deactivate current frame
     allFrames[currentFrame].style.display = "none";
 
     newsletterFrame.style.display = 'block';
@@ -131,7 +127,6 @@ function activateNewsLetterFrame() {
         parentContainer.classList.remove(style);
     }
 }
-
 
 function activateEndFrame(){
     
@@ -459,8 +454,23 @@ function initEventListeners() {
             const email = emailInput.value.trim();
 
             if (email) {
+                const submittedEmail = email;
+                newsletterFrame.style.display = 'none';
+                greetingFrame.style.display = 'block';
+                void greetingFrame.offsetWidth;
+                greetingFrame.classList.add('visible');
+                const waitForTransition = () => new Promise(resolve => {
+                    greetingFrame.addEventListener('transitionend', resolve, { once: true });
+                });
+
+                await waitForTransition();
+
                 emailInput.value = '';
-                await handleOptionClick('newsletter-option', email);
+                await handleOptionClick('newsletter-option', submittedEmail);
+
+                for (const style of allFrameStyles) {
+                    parentContainer.classList.remove(style);
+                }
             }
         });
     }
