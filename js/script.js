@@ -13,6 +13,8 @@ let frameThreeC = document.querySelector('.frame-three-c');
 
 let frameFour = document.querySelector('.frame-four');
 
+let greetingFrame = document.querySelector('.greeting-frame');
+
 
 let allFrames = [
     frameOne, 
@@ -20,7 +22,8 @@ let allFrames = [
     frameThreeA,
     frameThreeB,
     frameThreeC,
-    frameFour
+    frameFour,
+    greetingFrame
 ];
 
 let allFrameStyles = [
@@ -92,12 +95,6 @@ function animateAll(){
     options.forEach(option => option.classList.add('scale-up-ver-bottom'));
 }
 
-
-// end card
-let appStoreLogo = document.querySelector('.app-store-logo');
-let playStoreLogo = document.querySelector('.play-store-logo');
-let learnMore = document.querySelector('.learn-more');
-let contactSupport = document.querySelector('.contact-support');
 let endCardFrame = document.querySelector('.end-card');
 
 let newsletterFrame = document.querySelector('.newsletter-frame');
@@ -117,8 +114,6 @@ function addBackground(frameIndex) {
   addBackground(defaultFrame);
   currentFrame = currentFrame++;
 })();
-
-
 
 
 function activateNewsLetterFrame() {
@@ -319,7 +314,7 @@ optionSeventeen.addEventListener('click', () => {
 })
 
 const CONFIG = {
-    BACKEND_URL: 'https://zabira-backend.onrender.com/api/ad-tracking/track',
+    BACKEND_URL: 'https://zabira-backend-production.up.railway.app/api/ad-tracking/track',
     OPTION_MAPPING: {
         // Frame One
         'frame-one-option-one': 'STEP_1_LETS_GO',
@@ -362,7 +357,7 @@ const CONFIG = {
     },
     REDIRECT_URLS: {
         'learn-more': 'https://www.zabira.com',
-        'contact-support': 'https://www.zabira.com/company/contact',
+        'contact-support': 'https://beacons.ai/zabirahelpdesk',
         'app-store': 'https://zabir.onelink.me/KOGG/qxe4pni9',
         'play-store': 'https://zabir.onelink.me/KOGG/qxe4pni9'
     },
@@ -459,8 +454,23 @@ function initEventListeners() {
             const email = emailInput.value.trim();
 
             if (email) {
+                const submittedEmail = email;
+                newsletterFrame.style.display = 'none';
+                greetingFrame.style.display = 'block';
+                void greetingFrame.offsetWidth;
+                greetingFrame.classList.add('visible');
+                const waitForTransition = () => new Promise(resolve => {
+                    greetingFrame.addEventListener('transitionend', resolve, { once: true });
+                });
+
+                await waitForTransition();
+
                 emailInput.value = '';
-                await handleOptionClick('newsletter-option', email);
+                await handleOptionClick('newsletter-option', submittedEmail);
+
+                for (const style of allFrameStyles) {
+                    parentContainer.classList.remove(style);
+                }
             }
         });
     }
