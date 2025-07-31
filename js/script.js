@@ -356,10 +356,10 @@ const CONFIG = {
         'play-store': 'PLAY_STORE_CLICKED'
     },
     REDIRECT_URLS: {
-        'learn-more': 'https://www.zabira.com',
+        'learn-more': 'https://app.zabira.com/sign-up?referralCode=CavaiSignUp',
         'contact-support': 'https://beacons.ai/zabirahelpdesk',
-        'app-store': 'https://zabir.onelink.me/KOGG/qxe4pni9',
-        'play-store': 'https://zabir.onelink.me/KOGG/qxe4pni9'
+        'app-store': 'https://app.zabira.com/sign-up?referralCode=CavaiSignUp',
+        'play-store': 'https://app.zabira.com/sign-up?referralCode=CavaiSignUp'
     },
     DIMENSION: {
         'DIMENSION_320_480' : 'DIMENSION_320_480',
