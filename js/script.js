@@ -408,7 +408,7 @@ async function trackAndRedirect(interactionType) {
         await handleOptionClick(interactionType);
 
         if (CONFIG.REDIRECT_URLS[interactionType]) {
-            window.location.href = CONFIG.REDIRECT_URLS[interactionType];
+            window.open(CONFIG.REDIRECT_URLS[interactionType], '_blank');
         }
     } catch (error) {
         console.error('Error in trackAndRedirect:', error);
